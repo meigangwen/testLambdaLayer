@@ -1,7 +1,8 @@
 from aws_cdk import (
-    # Duration,
+    Duration,
     Stack,
-    # aws_sqs as sqs,
+    aws_lambda as _lambda,
+    aws_lambda_python_alpha as _alambda
 )
 from constructs import Construct
 
