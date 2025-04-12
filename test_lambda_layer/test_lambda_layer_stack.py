@@ -11,10 +11,12 @@ class TestLambdaLayerStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        # The code that defines your stack goes here
-
-        # example resource
-        # queue = sqs.Queue(
-        #     self, "TestLambdaLayerQueue",
-        #     visibility_timeout=Duration.seconds(300),
-        # )
+        initiator = _alambda.PythonFunction(
+            self,
+            "Main",
+            entry="./lambda/",
+            runtime=_lambda.Runtime.PYTHON_3_9,
+            index='main.py',
+            handler="handle",
+            timeout=Duration.seconds(10)
+        )
